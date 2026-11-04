@@ -1,0 +1,150 @@
+{
+  "name": "nextjs-project-creator",
+  "displayName": "Next.js One-Click Project Creator",
+  "description": "Run create-next-app in one click and open the new project (JS/JSX or TS/TSX).",
+  "version": "0.0.1",
+  "license": "SEE LICENSE IN LICENSE",
+  "publisher": "your-name",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mdsolimansikder7/Next-Js-project-Creator.git"
+  },
+  "homepage": "https://github.com/mdsolimansikder7/Next-Js-project-Creator#readme",
+  "bugs": {
+    "url": "https://github.com/mdsolimansikder7/Next-Js-project-Creator/issues"
+  },
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "nextCreator.create",
+        "title": "Next.js: Create Project"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "nextCreator",
+          "title": "Next.js Creator",
+          "icon": "images/sidebar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "nextCreator": [
+        {
+          "type": "webview",
+          "id": "nextCreator.panel",
+          "name": "Create Project",
+          "icon": "images/sidebar-icon.svg"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Next.js Creator",
+      "properties": {
+        "nextCreator.defaultFolder": {
+          "type": "string",
+          "default": "",
+          "description": "Where new projects are created. Empty = ask every time."
+        },
+        "nextCreator.language": {
+          "type": "string",
+          "enum": [
+            "typescript",
+            "javascript"
+          ],
+          "default": "typescript",
+          "description": "typescript = tsx files, javascript = jsx files."
+        },
+        "nextCreator.tailwind": {
+          "type": "boolean",
+          "default": true
+        },
+        "nextCreator.linter": {
+          "type": "string",
+          "enum": [
+            "eslint",
+            "biome",
+            "none"
+          ],
+          "default": "eslint",
+          "description": "Linter to use in the new Next.js project."
+        },
+        "nextCreator.reactCompiler": {
+          "type": "boolean",
+          "default": false
+        },
+        "nextCreator.cacheComponents": {
+          "type": "string",
+          "enum": [
+            "default",
+            "on",
+            "off"
+          ],
+          "default": "default",
+          "description": "default = let create-next-app decide, on = --cache-components, off = --no-cache-components."
+        },
+        "nextCreator.agentsMd": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include AGENTS.md to guide coding agents."
+        },
+        "nextCreator.srcDir": {
+          "type": "boolean",
+          "default": false
+        },
+        "nextCreator.appRouter": {
+          "type": "boolean",
+          "default": true
+        },
+        "nextCreator.turbopack": {
+          "type": "boolean",
+          "default": false
+        },
+        "nextCreator.importAlias": {
+          "type": "string",
+          "default": "@/*"
+        },
+        "nextCreator.packageManager": {
+          "type": "string",
+          "enum": [
+            "npm",
+            "pnpm",
+            "yarn",
+            "bun"
+          ],
+          "default": "npm"
+        },
+        "nextCreator.openAfterCreate": {
+          "type": "string",
+          "enum": [
+            "ask",
+            "currentWindow",
+            "newWindow"
+          ],
+          "default": "ask"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.0"
+  }
+}
